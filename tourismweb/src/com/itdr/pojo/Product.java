@@ -2,10 +2,12 @@ package com.itdr.pojo;
 
 import java.util.Date;
 
-public class Users {
+public class Product {
+
     private Integer id;
-    private String username;
-    private String password;
+    private String pname;
+    private Double price;
+    private Integer pnum;
     private int type;
     private Date create_time;
     private Date update_time;
@@ -18,20 +20,28 @@ public class Users {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPname() {
+        return pname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
-    public String getPassword() {
-        return password;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getPnum() {
+        return pnum;
+    }
+
+    public void setPnum(Integer pnum) {
+        this.pnum = pnum;
     }
 
     public int getType() {

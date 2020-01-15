@@ -2,11 +2,10 @@ package com.itdr.pojo;
 
 import java.util.Date;
 
-public class Users {
+public class Category {
     private Integer id;
-    private String username;
-    private String password;
-    private int type;
+    private String cname;
+    private Integer fid;
     private Date create_time;
     private Date update_time;
 
@@ -18,28 +17,20 @@ public class Users {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCname() {
+        return cname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getFid() {
+        return fid;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+    public void setFid(Integer fid) {
+        this.fid = fid;
     }
 
     public Date getCreate_time() {
