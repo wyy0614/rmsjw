@@ -5,7 +5,7 @@
   Time: 15:58
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="errorpage.jsp" %>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
@@ -31,8 +31,11 @@
 </head>
 <body>
 <div id="left">
-    <h1>欢迎${user.data.username}登陆管理后台</h1>
-    <a href="/product/getall">获取所有商品数据</a>
+    <p>
+        <a href="/backed/index/home">回到首页</a>
+    </p>
+    <h1>欢迎${us.username}登陆管理后台</h1>
+    <a href="/backed/product/getall">获取所有商品数据</a>
 </div>
 <div id="right">
 
@@ -58,7 +61,7 @@
                         <td>${p.create_time}</td>
                         <td>${p.update_time}</td>
                         <td>
-                            <button>下架</button>
+                            <button onclick="toType()">下架</button>
                             <button>修改</button>
                         </td>
                     </tr>
@@ -71,9 +74,23 @@
             没有更多的商品
         </c:if>
 
-
-
-
 </div>
 </body>
+<script src="../js/jquery-3.3.1.js" ></script>
+<script>
+    function toType() {
+        var id2 = $(this).parent().parent().first().text();
+        alert(id2);
+        $.get(
+            "/backed/product/toType",
+            {id:id2},
+            function (data) {
+                alert(data);
+            }
+        )
+    }
+</script>
+
+
+
 </html>

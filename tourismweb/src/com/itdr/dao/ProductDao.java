@@ -3,12 +3,15 @@ package com.itdr.dao;
 import com.itdr.pojo.Product;
 import com.itdr.utils.C3P0Util;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ProductDao {
+
+
 
     public List<Product> selectAll(){
         QueryRunner qr = new QueryRunner(C3P0Util.getCom());
@@ -21,5 +24,31 @@ public class ProductDao {
         }
 
         return query;
+    }
+
+    public Product selectById(int i) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+        String sql = "SELECT id,pname,price,pnum,type,create_time,update_time from bishe_product where id=?";
+        Product query = null;
+        try {
+            query = qr.query(sql, new BeanHandler<Product>(Product.class),i);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return query;
+    }
+
+
+    public static int updateById(int i) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+        String sql = "update bishe_product set type=1 where id=?";
+        int m = 0;
+        try {
+            m = qr.update(sql,i);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return m;
     }
 }
