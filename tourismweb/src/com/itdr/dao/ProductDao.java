@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ProductDao {
         QueryRunner qr = new QueryRunner(C3P0Util.getCom());
         String sql = "SELECT id,pname,price,pnum,type,create_time,update_time from bishe_product";
         List<Product> query = null;
-        try {
+        try  {
             query = qr.query(sql, new BeanListHandler<Product>(Product.class));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +43,7 @@ public class ProductDao {
 
     public static int updateById(int i) {
         QueryRunner qr = new QueryRunner(C3P0Util.getCom());
-        String sql = "update bishe_product set type=1 where id=?";
+        String sql = "update bishe_product set type=1,update_time=now() where id=?";
         int m = 0;
         try {
             m = qr.update(sql,i);
@@ -50,5 +51,18 @@ public class ProductDao {
             e.printStackTrace();
         }
         return m;
+    }
+
+    public List<Product> selectByPname(String key){
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+        String sql = "SELECT id,pname,price,pnum,type,create_time,update_time from bishe_product where pname like ?";
+        List<Product> query = null;
+        try {
+            query = qr.query(sql, new BeanListHandler<Product>(Product.class), (Object)key);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return query;
+
     }
 }
